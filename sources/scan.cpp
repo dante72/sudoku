@@ -27,7 +27,8 @@ char **correct_sudoku(Sudoku item, const int nn, int point, bool game)
 	do {
 		system("cls");
 		print_sudoku(item, nn, point);
-		if (n_space(m, nn) == -1)
+		
+		if (m1 && n_space(m, nn) == -1)
 		{
 			printf("\tYOU WIN!!\n\tPress ENTER...");
 			free(m);
@@ -35,6 +36,8 @@ char **correct_sudoku(Sudoku item, const int nn, int point, bool game)
 			getchar();
 			enter = true;
 		}
+		else
+			printf("\tUse Enter, Up, Dowp, Left, Right\n\tPress ESC to exit...");
 		x = _getch();
 		switch (x)
 		{
@@ -54,7 +57,7 @@ char **correct_sudoku(Sudoku item, const int nn, int point, bool game)
 			if (j - 1 >= 0)
 				j--;
 			break;
-		case Space:
+		case (Enter):
 			if(!game || m1[i][j] == '.')
 			do {
 				if (m[i][j] == '9')
@@ -73,15 +76,14 @@ char **correct_sudoku(Sudoku item, const int nn, int point, bool game)
 			{
 				free(m);
 				m = m1;
-				enter = true;
-				break;
 			}
-		case Enter:
+				enter = true;	
+				break;
+		/*case Enter:
 			if(!game)
 				enter = true;
-			break;
+			break;*/
 		}
-
 		point = nn * i + j;
 	} while (!enter);
 

@@ -19,7 +19,7 @@ void print_menu(char str[][20], const int n, int i)
 {
 	char point[] = ">> ";
 	char empty[] = "   ";
-	char* change[6];
+	char* change[8];
 
 	for (int j = 0; j < n; j++)
 		change[j] = empty;
@@ -33,8 +33,8 @@ int change_menu(Sudoku item, int index, int &point)
 	char** item1 = item.task, ** item2 = item.result;
 	int i = point, x, n, next = 0;
 	bool enter = false;
-	char str[][20] = { "next", "preview", "result", "correct", "game", "save" };
-	int count = 6;
+	char str[][20] = { "next", "preview", "result", "correct", "game", "save", "new", "delete" };
+	int count = 8;
 
 	do
 	{

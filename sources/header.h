@@ -6,6 +6,7 @@ struct Sudoku
 	char** task;
 	char** result;
 	int n_result;
+	int index;
 };
 
 char** create_squard(const int n);
@@ -37,3 +38,7 @@ char** correct_sudoku(Sudoku item, const int nn, int point, bool game);
 
 int change_menu(Sudoku list, int index, int& point);
 void print_menu(char str[][20], const int n, int i);
+
+char** empty_squard(char** m, const int n);
+Sudoku* new_item(Sudoku* list, int& index);
+Sudoku* del_item(Sudoku* list, int& index, int k);

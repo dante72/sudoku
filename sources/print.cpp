@@ -34,17 +34,18 @@ void print_sudoku(Sudoku item, const int n, int point)
 	{
 		for (int j = 0; j < n; j++)
 		{
-
 			if (i == u && j == v)
 				draw_item(m[i][j], Black, LightGreen);
 			else
 				if (m1 && check_num(m1[i][j]))
-					draw_item(m[i][j], Red, LightGray);
+					draw_item(m[i][j], Black, LightGray);
 				else
 					printf(" %c", m[i][j]);
 			if ((j + 1) % 3 == 0)
 				printf("|");
 		}
+		if (item.n_result == 0 && i == 4)
+			printf("\tNo result!");
 		printf("\n");
 		if ((i + 1) % 3 == 0)
 		{
@@ -53,7 +54,7 @@ void print_sudoku(Sudoku item, const int n, int point)
 			printf("\n");
 		}
 	}
-	printf("\n");
+	printf("Task %d\n\n", item.index + 1);
 }
 
 void double_print_sudoku(Sudoku item, const int n)
@@ -89,5 +90,8 @@ void double_print_sudoku(Sudoku item, const int n)
 		}
 		printf("\n");
 	}
-	printf("\n");
+	printf("Task %d", item.index + 1);
+	if (item.n_result > 1)
+		printf("\t\t\tMore one result!!!");
+	printf("\n\n");
 }

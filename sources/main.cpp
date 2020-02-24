@@ -21,12 +21,15 @@ int main()
 				list[index].task = create_squard(n);
 				list[index].result = nullptr;
 				list[index].n_result = -1;
-				str_to_squard(list[index].task, n, buff);
+				list[index].task = str_to_squard(list[index].task, n, buff);
+				list[index].index = index;
 				index++;
 			}
 		}
 		fclose(f);
 	}
+	if (!list)
+		list = new_item(list, index);
 
 	int i = 0, j = 0, point = 0;
 	for (;;)
@@ -49,6 +52,18 @@ int main()
 			list[i].task = correct_sudoku(list[i], n, 0, true);
 		if (j == 5)
 			save(list, index);
+		if (j == 6)
+		{
+			list = new_item(list, index);
+			i = index - 1;
+			correct_sudoku(list[i], n, 0, false);
+		}
+		if (j == 7)
+		{
+			list = del_item(list, index, i);
+			if (i > 0)
+				i--;
+		}
 	}
 	free(list);
 
@@ -61,7 +76,7 @@ void save(Sudoku* list, int index)
 {
 	FILE* f;
 	int i = 0;
-	if ((f = fopen("example.txt", "w+")) != NULL)
+	if ((f = fopen("example.txt", "w")) != NULL)
 	{
 		while (i < index)
 		{
@@ -74,8 +89,49 @@ void save(Sudoku* list, int index)
 			fprintf(f, "\n");
 			i++;
 		}
+		fprintf(f, "\n");
 		fclose(f);
 	}
+}
+
+Sudoku *new_item(Sudoku* list, int &index)
+{
+	int n = 9;
+	
+	list = (Sudoku*)realloc(list, sizeof(Sudoku) * (index + 1));
+	list[index].task = create_squard(n);
+	list[index].task = empty_squard(list[index].task, n);
+	list[index].result = nullptr;
+	list[index].n_result = -1;
+	list[index].index = index;
+	index++;
+
+	return list;
+}
+
+Sudoku* del_item(Sudoku* list, int& index, int k)
+{
+	int n = 9;
+
+	Sudoku *temp_list = (Sudoku*)malloc(sizeof(Sudoku) * index);
+	int i = 0, j = 0;
+	while (i < index)
+	{
+		if (i != k)
+		{
+			temp_list[j].task = new_copy(list[i].task, n);
+			temp_list[j].result = new_copy(list[i].result, n);
+			temp_list[j].n_result = list[i].n_result;
+			temp_list[j].index = j;
+			j++;
+		}
+		i++;
+	}
+	index--;
+	free(list);
+	list = temp_list;
+
+	return list;
 }
 
 
