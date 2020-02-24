@@ -95,10 +95,12 @@ void sudoku(char *str)
 	char** m = create_squard(n);
 
 	m = str_to_squard(m, n, str);
-	print_squard(m);
+	print_sudoku(m, n, 0);
+	scan_point(m, n, 0);
 	g_n = 0;
 	brute_force(m, n);
-	print_squard(g_m);
+	if (g_n != 0)
+		print_sudoku(g_m, n, -1);
 	free(m);
 	if (g_n > 1)
 		printf("More one result\n");
