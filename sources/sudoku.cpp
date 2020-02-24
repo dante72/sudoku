@@ -56,12 +56,14 @@ int n_space(char** m, const int n)
 			return i;
 		i++;
 	}
+
 	return -1;
 }
 
 int n_space2(char** m, const int n)
 {
 	int i = 0, min_result = 10, result = -1;
+
 	while (i < n * n)
 	{
 		if (m[i / n][i % n] == '.')
@@ -92,9 +94,11 @@ int n_space2(char** m, const int n)
 char **sudoku_result(Sudoku &list)
 {
 	int n = 9;
+
 	g_n = 0;
 	g_m = nullptr;
 	list.result = brute_force(list.task, n);
 	list.n_result = g_n;
+
 	return g_m;
 }

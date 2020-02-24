@@ -72,8 +72,7 @@ bool check_sq(char** m, int i, int j, char z)
 bool check_str(char* str, const int n)
 {
 	int i = 0;
-	//if (strlen(str) >= n * n + n - 1)
-	//	return false;
+
 	while (i < n * n + n - 1)
 	{
 		int j = 0;

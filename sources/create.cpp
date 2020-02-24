@@ -19,6 +19,7 @@ char** copy_squard(char** m, char **m1, const int n)
 			m1[i][j] = m[i][j];
 		i++;
 	}
+
 	return m1;
 }
 
