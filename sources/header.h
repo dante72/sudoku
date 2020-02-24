@@ -7,6 +7,9 @@ void print_sudoku(char** m, const int n, int point);
 char** new_copy(char** m, const int n);
 char** str_to_squard(char** m, const int n, char* str);
 char** copy_squard(char** m, char** m1, const int n);
+void double_print_sudoku(char** m, char** m1, const int n);
+bool check_num(char ch);
+bool check_str(char* str, const int n);
 
 bool check_num(char ch);
 bool check_horizont(char** ch, int i, int j, char z);

@@ -28,9 +28,9 @@ void print_sudoku(char** m, const int n, int point)
 	int u = point / n;
 	int v = point % n;
 
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < n; i++)
 	{
-		for (int j = 0; j < 9; j++)
+		for (int j = 0; j < n; j++)
 		{
 			if (i == u && j == v)
 				draw_item(m[i][j], Black, White);
@@ -42,10 +42,40 @@ void print_sudoku(char** m, const int n, int point)
 		printf("\n");
 		if ((i + 1) % 3 == 0)
 		{
-			for (int k = 0; k < 9 * 2 + 3; k++)
+			for (int k = 0; k < n * 2 + 3; k++)
 				printf("-");
 			printf("\n");
 		}
 	}
 	printf("\n");
+}
+
+void double_print_sudoku(char** m, char** m1, const int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			printf(" %c", m[i][j]);
+			if ((j + 1) % 3 == 0)
+				printf("|");
+		}
+		printf("\t");
+		for (int j = 0; j < n; j++)
+		{
+			printf(" %c", m1[i][j]);
+			if ((j + 1) % 3 == 0)
+				printf("|");
+		}
+		if ((i + 1) % 3 == 0)
+		{
+			printf("\n");
+			for (int k = 0; k < n * 2 + 3; k++)
+				printf("-");
+			printf("\t");
+			for (int k = 0; k < n * 2 + 3; k++)
+				printf("-");
+		}
+		printf("\n");
+	}
 }

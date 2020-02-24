@@ -1,3 +1,5 @@
+#include <iostream>
+
 bool check_num(char ch)
 {
 	if (ch > '0' && ch <= '9')
@@ -65,4 +67,27 @@ bool check_sq(char** m, int i, int j, char z)
 			if (check_squard(m, i, j, z))
 				return true;
 	return false;
+}
+
+bool check_str(char* str, const int n)
+{
+	int i = 0;
+	//if (strlen(str) >= n * n + n - 1)
+	//	return false;
+	while (i < n * n + n - 1)
+	{
+		int j = 0;
+		while (j < n)
+		{
+			if (!check_num(str[i]) && str[i] != '.')
+				return false;
+
+			i++;
+			j++;
+		}
+		if (str[i] != ' ' && i != n * n + n - 1)
+			return false;
+		i++;
+	}
+	return true;
 }

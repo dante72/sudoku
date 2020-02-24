@@ -93,20 +93,20 @@ void sudoku(char *str)
 {
 	int n = 9;
 	char** m = create_squard(n);
-
+	//if(check_str(str, n))
 	m = str_to_squard(m, n, str);
-	print_sudoku(m, n, 0);
-	scan_point(m, n, 0);
+	//print_sudoku(m, n, 0);
+	//scan_point(m, n, 0);
 	g_n = 0;
 	brute_force(m, n);
 	if (g_n != 0)
-		print_sudoku(g_m, n, -1);
+		double_print_sudoku(m, g_m, n);
 	free(m);
 	if (g_n > 1)
 		printf("More one result\n");
 	if (g_n == 0)
 		printf("No result\n");
-	printf("Complete...");
+	printf("Complete...\n\n");
 	if (g_n > 0)
 		free(g_m);
 }
