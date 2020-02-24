@@ -78,4 +78,5 @@ void double_print_sudoku(char** m, char** m1, const int n)
 		}
 		printf("\n");
 	}
+	printf("\n");
 }

@@ -44,7 +44,7 @@ char** brute_force(char** m, const int n)
 	}
 	free(m1);
 
-	return m;
+	return g_m;
 }
 
 int n_space(char** m, const int n)
@@ -89,24 +89,24 @@ int n_space2(char** m, const int n)
 	return result;
 }
 
-void sudoku(char *str)
+char **sudoku(char **m)
 {
 	int n = 9;
-	char** m = create_squard(n);
-	//if(check_str(str, n))
-	m = str_to_squard(m, n, str);
+
 	//print_sudoku(m, n, 0);
 	//scan_point(m, n, 0);
 	g_n = 0;
-	brute_force(m, n);
-	if (g_n != 0)
-		double_print_sudoku(m, g_m, n);
-	free(m);
-	if (g_n > 1)
+	g_m = nullptr;
+	g_m = brute_force(m, n);
+	//if (g_n != 0)
+	//	double_print_sudoku(m, g_m, n);
+	//free(m);
+	/*if (g_n > 1)
 		printf("More one result\n");
 	if (g_n == 0)
 		printf("No result\n");
 	printf("Complete...\n\n");
-	if (g_n > 0)
-		free(g_m);
+	if (g_n > 0)*/
+		//free(g_m);
+return g_m;
 }

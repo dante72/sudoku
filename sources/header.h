@@ -21,9 +21,12 @@ char** brute_force(char** m, const int n);
 int n_space(char** m, const int n);
 int n_space2(char** m, const int n);
 
-void sudoku(char* str);
+char **sudoku(char** m);
 
 void draw_item(char item, int color, int bg);
 void SetColor(int text, int background);
 
 char **scan_point(char** m, const int nn, int point);
+
+int change_menu(char **item, char **item2, int index, int &point);
+void print_menu(char str[][20], const int n, int i);
