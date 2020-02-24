@@ -11,19 +11,22 @@ enum Buttons {
 	Space = 32
 };
 
-char **correct_sudoku(char** m, const int nn, int point, bool game)
+char **correct_sudoku(Sudoku item, const int nn, int point, bool game)
 {
 	int i = point / nn;
 	int j = point % nn;
 	int x;
 	bool enter = false;
-	char** m1 = nullptr;
+	char** m1 = nullptr, **m = item.task;
 	
 	if (game)
-		m1 = new_copy(m, nn);
+	{
+		item.result = new_copy(m, nn);
+		m1 = item.result;
+	}
 	do {
 		system("cls");
-		print_sudoku(m, nn, point, m1);
+		print_sudoku(item, nn, point);
 		if (n_space(m, nn) == -1)
 		{
 			printf("\tYOU WIN!!\n\tPress ENTER...");

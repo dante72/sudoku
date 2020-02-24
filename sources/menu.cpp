@@ -29,8 +29,9 @@ void print_menu(char str[][20], const int n, int i)
 		cout << "\t" << change[j] << str[j] << endl;
 }
 
-int change_menu(char **item, char **item2, int index, int &point)
+int change_menu(Sudoku item, int index, int &point)
 {
+	char** item1 = item.task, ** item2 = item.result;
 	int i = point, x, n, next = 0;
 	bool enter = false;
 	char str[][20] = { "next", "preview", "result", "correct", "game" };
@@ -40,9 +41,9 @@ int change_menu(char **item, char **item2, int index, int &point)
 	{
 		system("cls");
 		if (!item2)
-			print_sudoku(item, 9, -1, nullptr);
+			print_sudoku(item, 9, -1);
 		else
-			double_print_sudoku(item, item2, 9);
+			double_print_sudoku(item, 9);
 
 		print_menu(str, count, point);
 		n = count;

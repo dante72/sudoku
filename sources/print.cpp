@@ -24,10 +24,11 @@ void print_squard(char** m)
 	printf("\n");
 }
 
-void print_sudoku(char** m, const int n, int point, char **m1)
+void print_sudoku(Sudoku item, const int n, int point)
 {
 	int u = point / n;
 	int v = point % n;
+	char** m = item.task, **m1 = item.result;
 
 	for (int i = 0; i < n; i++)
 	{
@@ -55,8 +56,10 @@ void print_sudoku(char** m, const int n, int point, char **m1)
 	printf("\n");
 }
 
-void double_print_sudoku(char** m, char** m1, const int n)
+void double_print_sudoku(Sudoku item, const int n)
 {
+	char** m = item.task, ** m1 = item.result;
+
 	for (int i = 0; i < n; i++)
 	{
 		for (int j = 0; j < n; j++)
