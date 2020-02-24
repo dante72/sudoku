@@ -3,7 +3,7 @@
 
 char** create_squard(const int n);
 void print_squard(char** m);
-void print_sudoku(char** m, const int n, int point);
+void print_sudoku(char** m, const int n, int point, char **m1);
 char** new_copy(char** m, const int n);
 char** str_to_squard(char** m, const int n, char* str);
 char** copy_squard(char** m, char** m1, const int n);
@@ -26,7 +26,7 @@ char **sudoku(char** m);
 void draw_item(char item, int color, int bg);
 void SetColor(int text, int background);
 
-char **scan_point(char** m, const int nn, int point);
+char ** correct_sudoku(char** m, const int nn, int point, bool game);
 
 int change_menu(char **item, char **item2, int index, int &point);
 void print_menu(char str[][20], const int n, int i);

@@ -11,16 +11,27 @@ enum Buttons {
 	Space = 32
 };
 
-char **scan_point(char** m, const int nn, int point)
+char **correct_sudoku(char** m, const int nn, int point, bool game)
 {
 	int i = point / nn;
 	int j = point % nn;
 	int x;
 	bool enter = false;
-
+	char** m1 = nullptr;
+	
+	if (game)
+		m1 = new_copy(m, nn);
 	do {
 		system("cls");
-		print_sudoku(m, nn, point);
+		print_sudoku(m, nn, point, m1);
+		if (n_space(m, nn) == -1)
+		{
+			printf("\tYOU WIN!!\n\tPress ENTER...");
+			free(m);
+			m = m1;
+			getchar();
+			enter = true;
+		}
 		x = _getch();
 		switch (x)
 		{
@@ -41,7 +52,7 @@ char **scan_point(char** m, const int nn, int point)
 				j--;
 			break;
 		case Space:
-			//bool flag = false;
+			if(!game || m1[i][j] == '.')
 			do {
 				if (m[i][j] == '9')
 					m[i][j] = '.';
@@ -54,12 +65,20 @@ char **scan_point(char** m, const int nn, int point)
 					break;
 			} while (!check_sq(m, i, j, m[i][j]));
 			break;
-
+		case ESC:
+			if (game)
+			{
+				free(m);
+				m = m1;
+				enter = true;
+				break;
+			}
 		case Enter:
-			//if (!p[1].m[i][j].status)
+			if(!game)
 				enter = true;
 			break;
 		}
+
 		point = nn * i + j;
 	} while (!enter);
 

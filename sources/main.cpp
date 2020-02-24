@@ -40,10 +40,12 @@ int main()
 			list2[i] = sudoku(list[i]);
 		if (j == 3)
 		{
-			scan_point(list[i], 9, 0);
+			correct_sudoku(list[i], n, 0, false);
 			free(list2[i]);
 			list2[i] = nullptr;
 		}
+		if (j == 4)
+			list[i] = correct_sudoku(list[i], n, 0, true);
 	}
 	free(list);
 	free(list2);

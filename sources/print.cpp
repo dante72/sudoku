@@ -1,5 +1,6 @@
 #include <iostream>
 #include <Windows.h>
+#include "header.h"
 
 enum Color { Black = 0, Blue, Green, Cyan, Red, Magenta, Brown, LightGray, DarkGray, LightBlue, LightGreen, LightCyan, LightRed, LightMagenta, Yellow, White };
 
@@ -23,7 +24,7 @@ void print_squard(char** m)
 	printf("\n");
 }
 
-void print_sudoku(char** m, const int n, int point)
+void print_sudoku(char** m, const int n, int point, char **m1)
 {
 	int u = point / n;
 	int v = point % n;
@@ -32,10 +33,14 @@ void print_sudoku(char** m, const int n, int point)
 	{
 		for (int j = 0; j < n; j++)
 		{
+
 			if (i == u && j == v)
-				draw_item(m[i][j], Black, White);
+				draw_item(m[i][j], Black, LightGreen);
 			else
-				printf(" %c", m[i][j]);
+				if (m1 && check_num(m1[i][j]))
+					draw_item(m[i][j], Red, LightGray);
+				else
+					printf(" %c", m[i][j]);
 			if ((j + 1) % 3 == 0)
 				printf("|");
 		}
@@ -63,7 +68,10 @@ void double_print_sudoku(char** m, char** m1, const int n)
 		printf("\t");
 		for (int j = 0; j < n; j++)
 		{
-			printf(" %c", m1[i][j]);
+			if (check_num(m[i][j]))
+				draw_item(m1[i][j], Black, LightGray);
+			else
+				printf(" %c", m1[i][j]);
 			if ((j + 1) % 3 == 0)
 				printf("|");
 		}
