@@ -1,7 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "header.h"
 
-void save(Sudoku* list, int index);
 int main()
 {
 	int n = 9;
@@ -38,37 +37,39 @@ int main()
 		
 		if (j == 0 && i + 1 < index)
 			i++;
-		if (j == 1 && i - 1 >= 0)
+		if (j == 3 && i - 1 >= 0)
 			i--;
-		if (j == 2)
+		if (j == 6)
 			sudoku_result(list[i]);
-		if (j == 3)
+		if (j == 7)
 		{	
 			free(list[i].result);
 			list[i].result = nullptr;
 			correct_sudoku(list[i], n, 0, false);
 		}
-		if (j == 4)
+		if (j == 2)
 			list[i].task = correct_sudoku(list[i], n, 0, true);
 		if (j == 5)
 			save(list, index);
-		if (j == 6)
+		if (j == 1)
 		{
 			list = new_item(list, index);
 			i = index - 1;
 			correct_sudoku(list[i], n, 0, false);
 		}
-		if (j == 7)
+		if (j == 4)
 		{
 			list = del_item(list, index, i);
+			if (!list)
+				list = new_item(list, index);
 			if (i > 0)
 				i--;
 		}
+		if (j == 8)
+			break;
 	}
 	free(list);
 
-	getchar();
-	getchar();
 	return 0;
 }
 
@@ -112,8 +113,11 @@ Sudoku *new_item(Sudoku* list, int &index)
 Sudoku* del_item(Sudoku* list, int& index, int k)
 {
 	int n = 9;
-
-	Sudoku *temp_list = (Sudoku*)malloc(sizeof(Sudoku) * index);
+	Sudoku* temp_list;
+	if (index == 1)
+		temp_list = nullptr;
+	else
+		temp_list = (Sudoku*)malloc(sizeof(Sudoku) * index);
 	int i = 0, j = 0;
 	while (i < index)
 	{
