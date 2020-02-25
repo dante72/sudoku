@@ -2,7 +2,6 @@
 
 int main()
 {
-	int n = 9;
 	Sudoku *list = nullptr;
 	int index = 0;
 
