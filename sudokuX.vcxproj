@@ -27,7 +27,7 @@
     <ClCompile Include="sources\main.cpp" />
     <ClCompile Include="sources\menu.cpp" />
     <ClCompile Include="sources\print.cpp" />
-    <ClCompile Include="sources\scan.cpp" />
+    <ClCompile Include="sources\actions.cpp" />
     <ClCompile Include="sources\sudoku.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

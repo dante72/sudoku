@@ -35,10 +35,10 @@
     <ClCompile Include="sources\sudoku.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="sources\scan.cpp">
+    <ClCompile Include="sources\menu.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="sources\menu.cpp">
+    <ClCompile Include="sources\actions.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

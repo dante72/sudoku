@@ -1,5 +1,5 @@
-#pragma once
 #include <iostream>
+#pragma once
 
 struct Sudoku
 {
@@ -36,7 +36,9 @@ void double_print_sudoku(Sudoku item, const int n);
 
 int change_menu(Sudoku list, int index, int& point);
 void print_menu(char str[][20], const int n, int i);
+Sudoku* menu(Sudoku* list, int& index);
 
+Sudoku* load(Sudoku* list, int& index);
 char** correct_sudoku(Sudoku item, const int nn, int point, bool game);
 Sudoku* new_item(Sudoku* list, int& index);
 Sudoku* del_item(Sudoku* list, int& index, int k);

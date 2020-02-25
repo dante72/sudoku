@@ -37,9 +37,9 @@ int change_menu(Sudoku item, int index, int &point)
 	char** item1 = item.task, ** item2 = item.result;
 	int x, k = 3, i = point / k, j = point % k, n = 9;
 	bool enter = false;
-	char str[][20] = { "Next  ", "New    ", "Game", 
-					   "Back  ", "Delete ",	"Save", 
-					   "Result", "Correct", "Exit" 
+	char str[][20] = { "Next    ", "New    ", "Game", 
+					   "Back    ", "Delete ", "Save", 
+					   "Solution", "Correct", "Exit" 
 					};
 	int count = 9;
 
@@ -80,4 +80,49 @@ int change_menu(Sudoku item, int index, int &point)
 	} while (!enter);
 
 	return point;
+}
+
+Sudoku *menu(Sudoku* list, int& index)
+{
+	int i = 0, j = 0, point = 0, n = 9;
+
+	for (;;)
+	{
+		j = change_menu(list[i], j, point);
+
+		if (j == 0 && i + 1 < index)
+			i++;
+		if (j == 3 && i - 1 >= 0)
+			i--;
+		if (j == 6)
+			sudoku_result(list[i]);
+		if (j == 7)
+		{
+			free(list[i].result);
+			list[i].result = nullptr;
+			correct_sudoku(list[i], n, 0, false);
+		}
+		if (j == 2)
+			list[i].task = correct_sudoku(list[i], n, 0, true);
+		if (j == 5)
+			save(list, index);
+		if (j == 1)
+		{
+			list = new_item(list, index);
+			i = index - 1;
+			correct_sudoku(list[i], n, 0, false);
+		}
+		if (j == 4)
+		{
+			list = del_item(list, index, i);
+			if (!list)
+				list = new_item(list, index);
+			if (i > 0)
+				i--;
+		}
+		if (j == 8)
+			break;
+	}
+
+	return list;
 }

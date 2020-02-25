@@ -45,7 +45,7 @@ void print_sudoku(Sudoku item, const int n, int point)
 				printf("|");
 		}
 		if (item.n_result == 0 && i == 4)
-			printf("\tNo result!");
+			printf("\tDoesn't have a solution!");
 		printf("\n");
 		if ((i + 1) % 3 == 0)
 		{
@@ -92,6 +92,6 @@ void double_print_sudoku(Sudoku item, const int n)
 	}
 	printf("Task %d", item.index + 1);
 	if (item.n_result > 1)
-		printf("\t\t\tMore one result!!!");
+		printf("\t\t\tDoesn't have a single solution!!!");
 	printf("\n\n");
 }

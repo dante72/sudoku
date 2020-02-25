@@ -25,7 +25,6 @@ char** brute_force(char** m, const int n)
 		return 0;
 	if (i == -1)
 	{
-		//print_squard(m);
 		g_n++;
 		if(g_n == 1)
 			g_m = new_copy(m, n);
