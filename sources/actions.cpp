@@ -2,16 +2,6 @@
 #include <conio.h>
 #include "header.h"
 
-enum Buttons {
-	ESC = 27,
-	Enter = 13,
-	Down = 80,
-	Up = 72,
-	Right = 77,
-	Left = 75,
-	Space = 32
-};
-
 char **correct_sudoku(Sudoku item, const int nn, int point, bool game)
 {
 	int i = point / nn;
@@ -32,7 +22,7 @@ char **correct_sudoku(Sudoku item, const int nn, int point, bool game)
 		if (m1 && n_space(m, nn) == -1)
 		{
 			printf("\tYOU WIN!!\n\tPress ENTER...");
-			free(m);
+			ft_free(m);
 			m = m1;
 			getchar();
 			enter = true;
@@ -41,6 +31,15 @@ char **correct_sudoku(Sudoku item, const int nn, int point, bool game)
 			printf("\tUse Space, Up, Dowp, Left, Right\n\tPress ESC to exit...");
 
 		x = _getch();
+		if (x >= Button0 && x <= Button9)
+		{
+			char ch = x - Button0 + '0';
+			if (ch == '0')
+				m[i][j] = '.';
+			else
+				if (check_sq(m, i, j, ch))
+					m[i][j] = ch;
+		}
 		switch (x)
 		{
 		case Down:
@@ -76,7 +75,7 @@ char **correct_sudoku(Sudoku item, const int nn, int point, bool game)
 		case ESC:
 			if (game)
 			{
-				free(m);
+				ft_free(m);
 				m = m1;
 			}
 				enter = true;	
@@ -116,10 +115,21 @@ Sudoku* load(Sudoku* list, int& index)
 	return list;
 }
 
+void free_list(Sudoku* list, int index)
+{
+	for (int i = 0; i < index; i++)
+	{
+			ft_free(list[i].task);
+			ft_free(list[i].result);
+	}
+	free(list);
+}
+
 void save(Sudoku* list, int index)
 {
 	FILE* f;
 	int i = 0;
+
 	if ((f = fopen("example.txt", "w")) != NULL)
 	{
 		while (i < index)
@@ -155,13 +165,14 @@ Sudoku* new_item(Sudoku* list, int& index)
 
 Sudoku* del_item(Sudoku* list, int& index, int k)
 {
-	int n = 9;
+	int n = 9, i = 0, j = 0;
 	Sudoku* temp_list;
+
 	if (index == 1)
 		temp_list = nullptr;
 	else
 		temp_list = (Sudoku*)malloc(sizeof(Sudoku) * index);
-	int i = 0, j = 0;
+
 	while (i < index)
 	{
 		if (i != k)
@@ -174,8 +185,8 @@ Sudoku* del_item(Sudoku* list, int& index, int k)
 		}
 		i++;
 	}
+	free_list(list, index);
 	index--;
-	free(list);
 	list = temp_list;
 
 	return list;

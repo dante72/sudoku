@@ -6,6 +6,7 @@ char** g_m;
 char** str_to_squard(char** m, const int n, char* str)
 {
 	int k = 0;
+
 	for (int i = 0; i < n; i++)
 	{
 		int j;
@@ -21,6 +22,7 @@ char** str_to_squard(char** m, const int n, char* str)
 char** brute_force(char** m, const int n)
 {
 	int i = n_space2(m, n);
+
 	if (i == -2 || g_n > 1)
 		return 0;
 	if (i == -1)
@@ -32,6 +34,7 @@ char** brute_force(char** m, const int n)
 
 	char** m1 = new_copy(m, n);
 	char ch = '1';
+
 	while (ch <= '9')
 	{
 		if (check_sq(m1, i / n, i % n, ch))
@@ -41,7 +44,7 @@ char** brute_force(char** m, const int n)
 		}
 		ch++;
 	}
-	free(m1);
+	ft_free(m1);
 
 	return g_m;
 }
@@ -49,6 +52,7 @@ char** brute_force(char** m, const int n)
 int n_space(char** m, const int n)
 {
 	int i = 0;
+
 	while (i < n * n)
 	{
 		if (m[i / n][i % n] == '.')

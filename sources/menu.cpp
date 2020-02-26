@@ -4,17 +4,6 @@
 
 using namespace std;
 
-enum Buttons {
-	ESC = 27,
-	Enter = 13,
-	Down = 80,
-	Up = 72,
-	Right = 77,
-	Left = 75,
-	Space = 32
-};
-
-
 void print_menu(char str[][20], const int n, int i)
 {
 	char point[] = ">> ";
@@ -98,7 +87,7 @@ Sudoku *menu(Sudoku* list, int& index)
 			sudoku_result(list[i]);
 		if (j == 7)
 		{
-			free(list[i].result);
+			ft_free(list[i].result);
 			list[i].result = nullptr;
 			correct_sudoku(list[i], n, 0, false);
 		}

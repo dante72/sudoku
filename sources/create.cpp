@@ -3,6 +3,7 @@
 char** create_squard(const int n)
 {
 	char **m = (char **)malloc((n + 1) * sizeof(char *));
+
 	for (int i = 0; i < n; i++)
 		m[i] = (char *)malloc((n + 1) * sizeof(char));
 	m[n] = nullptr;
@@ -10,9 +11,23 @@ char** create_squard(const int n)
 	return m;
 }
 
+void ft_free(char** m)
+{
+	int i = 0;
+
+	if(m)
+		while (m[i])
+		{
+			free(m[i]);
+			i++;
+		}
+	free(m);
+}
+
 char** copy_squard(char** m, char **m1, const int n)
 {
 	int i = 0;
+
 	while (m[i])
 	{
 		for (int j = 0; j <= n; j++)
@@ -26,6 +41,7 @@ char** copy_squard(char** m, char **m1, const int n)
 char** empty_squard(char** m, const int n)
 {
 	int i = 0;
+
 	while (m[i])
 	{
 		for (int j = 0; j < n; j++)
